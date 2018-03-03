@@ -5,12 +5,13 @@ import {
     TouchableOpacity,
     Text,
     Animated,
-    Easing
+    ScrollView
 } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import Check from './check.js';
+import InactiveCheck from './inactive-check.js';
+import ValueDisplay from './value-display.js';
 
 export default class Match extends Component {
 
@@ -68,8 +69,8 @@ export default class Match extends Component {
     }
 
     render() {
-        // Set background color based off of "color" prop passed in. If red, set to red. Else, set to blue.
-        var color = this.props.color === "red" ? '#E66840' : '#4D98E4';
+        // Set background color based off of "color" prop passed in. If RED, set to red. Else, set to blue.
+        var color = this.props.data.color === "RED" ? '#E66840' : '#4D98E4';
 
         const rotateValue = this.state.rotate.interpolate({
             inputRange: [0, 360],
@@ -79,8 +80,8 @@ export default class Match extends Component {
         return (
             <View style={styles.container}>
                 <View style={[styles.heading, {backgroundColor: color}]}>
-                    <Text style={styles.team}>334</Text>
-                    <Text style={styles.match}>Match 12: 3:48 PM</Text>
+                    <Text style={styles.team}>Team {this.props.data.team}</Text>
+                    <Text style={styles.match}>Match {this.props.data.match}</Text>
                     <Animated.View style={[styles.iconWrapper, { transform: [{ rotate: rotateValue }] }]}>
                         <TouchableOpacity onPress={this.toggleCard} style={{padding: 12}}>
                             <Ionicons style={styles.icon} name="ios-arrow-forward" size={20} />
@@ -89,13 +90,31 @@ export default class Match extends Component {
                 </View>
 
                 <Animated.View style={[styles.expanded, { height: this.state.cardHeight }]}>
-                    <Text style={styles.dataTitle}>Auton</Text>
-                    <View style={styles.data}>
-                        <Check text="Crossed Baseline"/>
-                        <Check text="Placed Cube on Switch"/>
-                        <Check text="Placed Cube on Wrong Possession Switch"/>
-                        <Check text="Placed Cube on Scale"/>
-                    </View>
+                    <ScrollView>
+                        <Text style={styles.dataTitle}>Auton</Text>
+                        <View style={styles.data}>
+                            <InactiveCheck checked={this.props.data.auton.passed_baseline} text="Crossed Baseline"/>
+                            <InactiveCheck checked={this.props.data.auton.placed_switch} text="Placed Cube on Switch"/>
+                            <InactiveCheck checked={this.props.data.auton.placed_opponents_switch} text="Placed Cube on Opponent's Switch"/>
+                            <InactiveCheck checked={this.props.data.auton.placed_scale} text="Placed Cube on Scale"/>
+                        </View>
+                        <Text style={styles.dataTitle}>Teleop</Text>
+                        <View style={styles.data}>
+                            <ValueDisplay value={this.props.data.teleop.cubes_home_switch} text="Cubes Placed on Home Switch:"/>
+                            <ValueDisplay value={this.props.data.teleop.cubes_away_switch} text="Cubes Placed on Away Switch:"/>
+                            <ValueDisplay value={this.props.data.teleop.cubes_scale} text="Cubes Placed on Scale:"/>
+                            <ValueDisplay value={this.props.data.teleop.cubes_vault} text="Cubes Placed in Vault:"/>
+                            <ValueDisplay value={this.props.data.teleop.defense} text="Defense 1-5:"/>
+                            <InactiveCheck checked={this.props.data.teleop.fall} text="Tipped Over"/>
+                        </View>
+                        <Text style={styles.dataTitle}>End Game</Text>
+                        <View style={styles.data}>
+                            <InactiveCheck checked={this.props.data.end.climber} text="Climbed"/>
+                            <ValueDisplay value={this.props.data.end.climb_aid} text="Teams Aided in Climbing:"/>
+                            <ValueDisplay value={this.props.data.end.fouls} text="Fouls:"/>
+                            <ValueDisplay value={this.props.data.end.score} text="Final Alliance Score:"/>
+                        </View>
+                    </ScrollView>
                 </Animated.View>
             </View>
         );
@@ -122,7 +141,7 @@ const styles = StyleSheet.create({
         fontWeight: '700'
     },
     match: {
-        flex: 3,
+        flex: 2,
         textAlign: 'right',
         fontSize: 16,
         fontWeight: '500',
@@ -144,7 +163,7 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 4
     },
     dataTitle: {
-        color: '#949496',
+        color: '#6c6d71',
         fontSize: 17,
         fontWeight: '700',
         margin: 10,

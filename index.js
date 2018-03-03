@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, View } from 'react-native';
+import { AppRegistry, View, StatusBar } from 'react-native';
 
 import { StackNavigator } from 'react-navigation';
 
@@ -39,6 +39,9 @@ export default class Recon extends Component {
         return (
             <Provider store={store}>
                 <View style={{flex: 1}}>
+                    <StatusBar
+                        barStyle="light-content"
+                    />
                     <ReconNav />
                 </View>
             </Provider>

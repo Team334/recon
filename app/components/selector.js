@@ -82,12 +82,5 @@ const styles = StyleSheet.create({
     itemText: {
         fontSize: 16,
         color: '#c0c2c5'
-    },
-    input: {
-        height: 40,
-        borderColor: '#707174',
-        borderBottomWidth: 1.5,
-        color: '#36373d',
-        fontSize: 16
     }
 });

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-    StatusBar,
     StyleSheet,
     View,
     ScrollView,
@@ -22,19 +21,19 @@ export default class Teleop extends Component {
                     />
                     <Stepper
                         text="CUBES PLACED ON AWAY SWITCH:"
-                        onChange={(value) => this.props.set('cubes_home_switch', value, 'teleop')}
+                        onChange={(value) => this.props.set('cubes_away_switch', value, 'teleop')}
                     />
                     <Stepper
                         text="CUBES PLACED ON SCALE:"
-                        onChange={(value) => this.props.set('cubes_home_switch', value, 'teleop')}
+                        onChange={(value) => this.props.set('cubes_scale', value, 'teleop')}
                     />
                     <Stepper
                         text="CUBES PLACED IN VAULT:"
-                        onChange={(value) => this.props.set('cubes_home_switch', value, 'teleop')}
+                        onChange={(value) => this.props.set('cubes_vault', value, 'teleop')}
                     />
                     <Stepper
                         text="DEFENSE (1-5)"
-                        onChange={(value) => this.props.set('cubes_home_switch', value, 'teleop')}
+                        onChange={(value) => this.props.set('defense', value, 'teleop')}
                         max={5}
                     />
                     <Check

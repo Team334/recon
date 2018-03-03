@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-    StatusBar,
     StyleSheet,
     View,
     ScrollView,
@@ -9,8 +8,11 @@ import {
 } from 'react-native';
 
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import { NavigationActions } from 'react-navigation';
 
 import { connect } from 'react-redux';
+
+import { addMatch } from './actions/match';
 
 import PreMatch from './components/collect/pre-match.js'
 import Auton from './components/collect/auton.js'
@@ -54,6 +56,7 @@ class Scout extends Component {
         }
 
         this.setInput = this.setInput.bind(this);
+        this.submitMatch = this.submitMatch.bind(this);
 
     }
 
@@ -88,6 +91,10 @@ class Scout extends Component {
         this.setState(form);
     }
 
+    submitMatch() {
+        this.props.dispatch(addMatch(this.state.form));
+        this.props.navigation.dispatch(NavigationActions.back());
+    }
 
     render() {
 
@@ -114,10 +121,6 @@ class Scout extends Component {
 
         return (
             <View style={styles.container}>
-                <StatusBar
-                    backgroundColor="blue"
-                    barStyle="light-content"
-                />
                 <Carousel
                     ref={c => this.carousel = c}
                     data={items}

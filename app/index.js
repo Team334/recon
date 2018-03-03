@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import {
-    StatusBar,
     StyleSheet,
     View,
-    ScrollView,
+    FlatList,
     Text
 } from 'react-native';
+
+import { connect } from 'react-redux';
 
 import Match from './components/match.js'
 import IconButton from './components/icon.js';
 
-export default class Home extends Component {
+class Home extends Component {
 
     static navigationOptions = ({ navigation }) => ({
         title: `Recon`,
@@ -21,19 +22,15 @@ export default class Home extends Component {
 
     render() {
         return (
-            <ScrollView style={styles.container}>
-                <StatusBar
-                    backgroundColor="blue"
-                    barStyle="light-content"
-                />
-                <Match color="red"/>
-                <Match color="blue"/>
-                <Match color="red"/>
-                <Match color="red"/>
-                <Match color="blue"/>
-                <Match color="red"/>
-                <Match color="blue"/>
-            </ScrollView>
+            <FlatList
+                style={styles.container}
+                data={this.props.matches}
+                keyExtractor={(item, index) => item.team + item.match}
+                renderItem={({item}) =>
+                    <Match data={item} />
+                }
+            />
+
         );
     }
 }
@@ -44,3 +41,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#EBEEF5'
     }
 });
+
+export default connect((state) => {
+    return {
+        matches: state.matches.sort((a, b) => b.match - a.match)
+    };
+}, null)(Home);
