@@ -14,6 +14,8 @@ import { connect } from 'react-redux';
 
 import { addMatch } from './actions/match';
 
+import Networking from './services/networking';
+
 import PreMatch from './components/collect/pre-match.js'
 import Auton from './components/collect/auton.js'
 import Teleop from './components/collect/teleop.js'
@@ -92,6 +94,7 @@ class Scout extends Component {
     }
 
     submitMatch() {
+        Networking.submitMatch(this.state.form);
         this.props.dispatch(addMatch(this.state.form));
         this.props.navigation.dispatch(NavigationActions.back());
     }
