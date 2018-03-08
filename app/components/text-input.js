@@ -23,6 +23,7 @@ export default class Input extends Component {
                     placeholder={this.props.placeholder}
                     placeholderTextColor={'#c0c2c5'}
                     keyboardType={this.props.type}
+                    multiline={this.props.multiline}
                 />
                 </View>
             </View>

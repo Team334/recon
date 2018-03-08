@@ -40,7 +40,7 @@ export default class Match extends Component {
             Animated.timing(
                 this.state.cardHeight,
                 {
-                    toValue: 175,
+                    toValue: 275,
                     duration: 150
                 }
             ).start();
@@ -81,7 +81,7 @@ export default class Match extends Component {
             <View style={styles.container}>
                 <View style={[styles.heading, {backgroundColor: color}]}>
                     <Text style={styles.team}>Team {this.props.data.team}</Text>
-                    <Text style={styles.match}>Match {this.props.data.match}</Text>
+                    <Text style={styles.match}>Match {this.props.data.match} - Position {this.props.data.position}</Text>
                     <Animated.View style={[styles.iconWrapper, { transform: [{ rotate: rotateValue }] }]}>
                         <TouchableOpacity onPress={this.toggleCard} style={{padding: 12}}>
                             <Ionicons style={styles.icon} name="ios-arrow-forward" size={20} />
@@ -93,6 +93,7 @@ export default class Match extends Component {
                     <ScrollView>
                         <Text style={styles.dataTitle}>Auton</Text>
                         <View style={styles.data}>
+                            <InactiveCheck checked={this.props.data.auton.auton} text="Auton"/>
                             <InactiveCheck checked={this.props.data.auton.passed_baseline} text="Crossed Baseline"/>
                             <InactiveCheck checked={this.props.data.auton.placed_switch} text="Placed Cube on Switch"/>
                             <InactiveCheck checked={this.props.data.auton.placed_opponents_switch} text="Placed Cube on Opponent's Switch"/>
@@ -105,6 +106,7 @@ export default class Match extends Component {
                             <ValueDisplay value={this.props.data.teleop.cubes_scale} text="Cubes Placed on Scale:"/>
                             <ValueDisplay value={this.props.data.teleop.cubes_vault} text="Cubes Placed in Vault:"/>
                             <ValueDisplay value={this.props.data.teleop.defense} text="Defense 1-5:"/>
+                            <ValueDisplay value={this.props.data.teleop.cubes_dropped} text="Cubes Dropped:"/>
                             <InactiveCheck checked={this.props.data.teleop.fall} text="Tipped Over"/>
                         </View>
                         <Text style={styles.dataTitle}>End Game</Text>
@@ -113,6 +115,7 @@ export default class Match extends Component {
                             <ValueDisplay value={this.props.data.end.climb_aid} text="Teams Aided in Climbing:"/>
                             <ValueDisplay value={this.props.data.end.fouls} text="Fouls:"/>
                             <ValueDisplay value={this.props.data.end.score} text="Final Alliance Score:"/>
+                            <ValueDisplay value={this.props.data.end.comments} text="Comments:"/>
                         </View>
                     </ScrollView>
                 </Animated.View>

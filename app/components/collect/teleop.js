@@ -36,6 +36,10 @@ export default class Teleop extends Component {
                         onChange={(value) => this.props.set('defense', value, 'teleop')}
                         max={5}
                     />
+                    <Stepper
+                        text="CUBES DROPPED"
+                        onChange={(value) => this.props.set('cubes_dropped', value, 'teleop')}
+                    />
                     <Check
                         text="TIPPED OVER"
                         onPress={(value) => this.props.set('fall', value, 'teleop')}

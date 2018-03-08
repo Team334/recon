@@ -34,7 +34,9 @@ class Scout extends Component {
                 team: '',
                 match: '',
                 color: 'BLUE',
+                position: 1,
                 auton: {
+                    auton: false,
                     passed_baseline: false,
                     placed_switch: false,
                     placed_opponents_switch: false,
@@ -46,13 +48,15 @@ class Scout extends Component {
                     cubes_scale: 0,
                     cubes_vault: 0,
                     defense: 0,
+                    cubes_dropped: 0,
                     fall: false
                 },
                 end: {
                     climber: false,
                     climb_aid: 0,
                     fouls: 0,
-                    score: 0
+                    score: 0,
+                    comments: ""
                 }
             }
         }

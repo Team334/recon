@@ -25,7 +25,7 @@ export default class Selector extends Component {
                 <TouchableOpacity
                     key={itemInfo.text}
                     style={itemInfo.selected ? [styles.itemSelected, {backgroundColor: itemInfo.color}] : styles.item}
-                    onPress={() => {this.props.switchAlliance(itemInfo.text)}}
+                    onPress={() => {this.props.switchSelection(itemInfo.text)}}
                 >
                     <Text style={itemInfo.selected ? [styles.itemText, {color: 'white'}] : styles.itemText}>{itemInfo.text}</Text>
                 </TouchableOpacity>

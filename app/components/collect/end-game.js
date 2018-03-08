@@ -4,7 +4,8 @@ import {
     View,
     ScrollView,
     Text,
-    TouchableOpacity
+    TouchableOpacity,
+    KeyboardAvoidingView
 } from 'react-native';
 
 import Check from '../check.js'
@@ -16,7 +17,7 @@ export default class EndGame extends Component {
     render() {
         return (
             <ScrollView style={styles.container}>
-                <View style={styles.input}>
+                <KeyboardAvoidingView style={styles.input} behavior={'position'}>
                     <Check
                         text="CLIMBED"
                         onPress={(value) => this.props.set('climber', value, 'end')}
@@ -36,10 +37,16 @@ export default class EndGame extends Component {
                         type="numeric"
                         onChange={(value) => this.props.set('score', value.text, 'end')}
                     />
+                    <Input
+                        text="COMMENTS:"
+                        multiline={true}
+                        placeholder="Spun in circles in auton."
+                        onChange={(value) => this.props.set('comments', value.text, 'end')}
+                    />
                     <TouchableOpacity style={styles.submit_btn} onPress={() => this.props.submit()}>
                         <Text style={styles.submitText}>SUBMIT</Text>
                     </TouchableOpacity>
-                </View>
+                </KeyboardAvoidingView>
             </ScrollView>
         );
     }
@@ -52,19 +59,19 @@ const styles = StyleSheet.create({
     },
     heading: {
         color: '#545454',
-        fontSize: 16,
+        fontSize: 16
     },
     input: {
         marginTop: 5
     },
     submit_btn: {
         marginTop: 20,
+        marginBottom: 85,
         height: 45,
         backgroundColor: '#0089ff',
         borderRadius: 5,
         justifyContent: 'center',
-        alignItems: 'center',
-        flex: 1
+        alignItems: 'center'
     },
     submitText: {
         fontSize: 16,

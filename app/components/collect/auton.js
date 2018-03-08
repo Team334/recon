@@ -15,6 +15,10 @@ export default class Auton extends Component {
             <ScrollView style={styles.container}>
                 <View style={styles.input}>
                     <Check
+                        text="AUTON"
+                        onPress={(value) => this.props.set('auton', value, 'auton')}
+                    />
+                    <Check
                         text="CROSSED BASELINE"
                         onPress={(value) => this.props.set('passed_baseline', value, 'auton')}
                     />

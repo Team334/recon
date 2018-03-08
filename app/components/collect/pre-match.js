@@ -25,10 +25,26 @@ export default class PreMatch extends Component {
                     color: "#D93E46",
                     selected: false
                 }
+            ],
+            positions: [
+                {
+                    text: "1",
+                    color: "#555555",
+                    selected: true
+                }, {
+                    text: "2",
+                    color: "#555555",
+                    selected: false
+                }, {
+                    text: "3",
+                    color: "#555555",
+                    selected: false
+                }
             ]
         }
 
         this._switchAlliance = this._switchAlliance.bind(this);
+        this._switchPosition = this._switchPosition.bind(this);
     }
 
     _switchAlliance(selection) {
@@ -44,6 +60,19 @@ export default class PreMatch extends Component {
 
     }
 
+    _switchPosition(selection) {
+        var positions = this.state.positions.slice(0);
+
+        let that = this;
+        this.state.positions.forEach(function (position, i) {
+            positions[i].selected = (position.text == selection) ? true : false
+        });
+
+        this.setState(positions);
+        this.props.set('position', selection)
+
+    }
+
     render() {
         return (
             <ScrollView style={styles.container}>
@@ -51,7 +80,12 @@ export default class PreMatch extends Component {
                     <Selector
                         text="ALLIANCE:"
                         items={this.state.alliances}
-                        switchAlliance={(sel) => this._switchAlliance(sel)}
+                        switchSelection={(sel) => this._switchAlliance(sel)}
+                    />
+                    <Selector
+                        text="POSITION:"
+                        items={this.state.positions}
+                        switchSelection={(sel) => this._switchPosition(sel)}
                     />
                     <Input
                         text="TEAM:"
