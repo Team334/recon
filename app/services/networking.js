@@ -4,11 +4,10 @@ import Config from '../config.js';
 
 import { addMatch } from '../actions/match';
 
-var socket, dispatch;
+var socket;
 
-function init(dis) {
+function init(dispatch) {
     socket = SocketIOClient(Config.SERVER);
-    dispatch = dis;
 
     socket.on('connect', () => {
         _refresh();
@@ -18,7 +17,7 @@ function init(dis) {
     });
 
     socket.on('submit_match', (match) => {
-        dispatch(addMatch(JSON.parse(match)));
+        dispatch(addMatch(match));
     });
 }
 
