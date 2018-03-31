@@ -7,7 +7,7 @@ import { addMatch } from '../actions/match';
 var socket;
 
 function init(dispatch) {
-    socket = SocketIOClient(Config.SERVER);
+    socket = SocketIOClient( Config.SERVER, { transports: ['websocket'] } );
 
     socket.on('connect', () => {
         _refresh();
