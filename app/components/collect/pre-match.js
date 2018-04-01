@@ -96,7 +96,6 @@ export default class PreMatch extends Component {
                     <Input
                         text="MATCH NUMBER:"
                         placeholder="123"
-                        type="numeric"
                         onChange={(text) => this.props.set('match', text.text)}
                     />
                 </View>

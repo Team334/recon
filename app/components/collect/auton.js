@@ -27,7 +27,7 @@ export default class Auton extends Component {
                         onPress={(value) => this.props.set('placed_switch', value, 'auton')}
                     />
                     <Check
-                        text="PLACED CUBE ON OPPONENT'S SWITCH"
+                        text="MISPLACED CUBE"
                         onPress={(value) => this.props.set('placed_opponents_switch', value, 'auton')}
                     />
                     <Check

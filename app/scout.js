@@ -184,13 +184,9 @@ const styles = StyleSheet.create({
         marginTop: 15,
         overflow: 'visible'
     },
-    sliderContentContainer: {
-        paddingVertical: 10,
-    },
     slide: {
         width: Dimensions.get('window').width * .85,
-        height: Dimensions.get('window').height * .77,
-        marginHorizontal: 5,
+        marginHorizontal: 5
     }
 });
 

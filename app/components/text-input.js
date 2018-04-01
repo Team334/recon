@@ -24,6 +24,7 @@ export default class Input extends Component {
                     placeholderTextColor={'#c0c2c5'}
                     keyboardType={this.props.type}
                     multiline={this.props.multiline}
+                    underlineColorAndroid={'transparent'}
                 />
                 </View>
             </View>
