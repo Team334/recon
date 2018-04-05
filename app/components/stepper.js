@@ -80,14 +80,16 @@ const styles = StyleSheet.create({
         fontSize: 24
     },
     minus: {
-        paddingTop: 8
+        paddingTop: 6,
+        paddingHorizontal: 4
     },
     plus: {
-        paddingTop: 8
+        paddingTop: 6,
+        paddingHorizontal: 4
     },
     icon: {
         color: '#7b7b82',
-        fontSize: 26,
-        fontWeight: '400'
+        fontSize: 34,
+        fontWeight: '300'
     }
 });

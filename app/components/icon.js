@@ -15,7 +15,7 @@ export default class IconButton extends Component {
                 style={styles.container}
                 onPress={this.props.onPress}
             >
-                <Ionicons style={styles.icon} name="ios-add" size={30} />
+                <Ionicons style={styles.icon} name="ios-add" size={32} />
             </TouchableOpacity>
         );
     }
@@ -29,6 +29,6 @@ const styles = StyleSheet.create({
     },
     icon: {
         color: 'white',
-        margin: 18
+        marginRight: 18
     }
 });

@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     expanded: {
-        backgroundColor: '#ebebeb',
+        backgroundColor: '#eaedf4',
         flex: 1,
         overflow: 'hidden',
         borderBottomLeftRadius: 4,
